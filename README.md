@@ -4,12 +4,12 @@
 ```
 docker pull httpd:2.4
 ```
-![img_1.png](img_1.png)
 ### Comprobamos que la imagen está en nuestro equipo con
 ```
 docker images httpd
 ```
-![img.png](imgs/img.png)
+
+
 ## 2. Crea un contenedor con el nombre 'dam_web1'
 ### Lo creamos con
 ```
@@ -19,5 +19,34 @@ docker run -d --name dam_web1 httpd:2.4
 ```
 docker ps
 ```
-![img_2.png](img_2.png)
+
+
+## 3. Si quieres poder acceder desde el navegador de tu equipo, ¿que debes hacer?Utiliza bind mount para que el directorio del apache2 'htdocs' esté montado un directorio que tu elijas
+### Primero hay que eliminar el contenedor para crear otro con el puerto mapeado, esto lo hacemos con
+```
+docker stop dam_web1
+docker rm dam_web1
+```
+### Creamos un directorio en nuestro host y creamos el contenedor
+```
+mkdir /home/pedro/hostApache
+docker run -d --name dam_web1 -p 8000:80 httpd:2.4
+```
+### Ahora creamos el contenedor con el bind mount
+```
+sudo docker run -d --name dam_web1 -p 8000:80 -v /home/pedro/hostApache:/usr/local/apache2/htdocs httpd:2.4
+```
+
+
+
+## 4. Realiza un 'hola mundo' en html y comprueba que accedes desde el navegador.
+### Creamos el archivo index.html en el directorio hostApache
+```
+echo "<h1>Hola Mundo</h1>" > /home/pedro/hostApache/index.html
+```
+### Comprobamos que accedemos desde el navegador con
+```
+http://localhost:8000
+```
+
 
