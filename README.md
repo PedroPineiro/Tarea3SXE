@@ -42,7 +42,7 @@ sudo docker run -d --name dam_web1 -p 8000:80 -v /home/pedro/hostApache:/usr/loc
 ## 4. Realiza un 'hola mundo' en html y comprueba que accedes desde el navegador.
 ### Creamos el archivo index.html en el directorio hostApache
 ```
-echo "<h1>Hola Mundo</h1>" > /home/pedro/hostApache/index.html
+echo "<html><body><h1>Hola Mundo</h1></body></html>" > /home/pedro/hostApache/index.html
 ```
 ### Comprobamos que accedemos desde el navegador con
 ```
@@ -68,6 +68,14 @@ http://localhost:8000
 http://localhost:9080
 ```
 ### Y comprobamos que vemos el mismo contenido en ambos
+
+
+## 7. Realiza modificaciones de la página y comprueba que los dos servidores 'sirven' la misma página
+### Modificamos el archivo index.html
+```
+echo "<html><body><h1>Adios Mundo</h1></body></html>" > /home/pedro/hostApache/index.html
+```
+### Vemos que los dos servidores sirven la misma página
 
 
 
