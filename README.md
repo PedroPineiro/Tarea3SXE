@@ -50,3 +50,24 @@ http://localhost:8000
 ```
 
 
+## 5. Crea otro contenedor 'dam_web2' con el mismo bind mount y a otro puerto, por ejemplo 9080
+### Creamos el contenedor con el bind mount y en el puerto 9080
+```
+sudo docker run -d --name dam_web2 -p 9080:80 -v /home/pedro/hostApache:/usr/local/apache2/htdocs httpd:2.4
+```
+### Comprobamos que se ha creado con
+```
+docker ps
+```
+
+
+## 6. Comprueba que los dos servidores 'sirven' la misma página, es decir, cuando consultamos en el navegador
+### En el navegador accedemos a
+```
+http://localhost:8000
+http://localhost:9080
+```
+### Y comprobamos que vemos el mismo contenido en ambos
+
+
+
